@@ -1,10 +1,11 @@
 package ru.schepin.spring_mvc.books.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
-@Table(name = "book")
+@Table(name = "my_books")
 public class Book {
     @Id
     @Column(name = "ID")
@@ -19,6 +20,11 @@ public class Book {
 
     @Column(name = "BOOK_PRICE")
     private int price;
+
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SalePoint> points;
 
     public int getId() {
         return id;
@@ -52,6 +58,15 @@ public class Book {
         this.price = price;
     }
 
+    public List<SalePoint> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<SalePoint> points) {
+        this.points = points;
+    }
+
+
     @Override
     public String toString() {
         return "Book{" +
@@ -59,6 +74,7 @@ public class Book {
                 ", bookTitle='" + bookTitle + '\'' +
                 ", bookAuthor='" + bookAuthor + '\'' +
                 ", price=" + price +
+                ", points=" + points +
                 '}';
     }
 }

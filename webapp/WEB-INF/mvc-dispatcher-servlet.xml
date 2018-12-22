@@ -30,12 +30,14 @@
         <property name="annotatedClasses">
             <list>
                 <value>ru.schepin.spring_mvc.books.model.Book</value>
+                <value>ru.schepin.spring_mvc.books.model.SalePoint</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.id.new_generator_mappings">false</prop>
             </props>
         </property>
     </bean>

@@ -60,4 +60,13 @@ public class BookController {
 
         return "bookdata";
     }
+
+    @RequestMapping("salePoint/{id}")
+    public String salePoint(@PathVariable("id") int id, Model model) {
+        model.addAttribute("listSalePoint", this.bookService.getById(id));
+
+        return "salePoint";
+    }
+
+
 }

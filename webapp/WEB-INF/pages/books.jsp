@@ -3,10 +3,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=windows-1251" language="java" %>
 <html>
 <head>
-    <title>Books Page</title>
+    <title>Список книг</title>
 
     <style type="text/css">
         .tg {
@@ -49,17 +49,18 @@
 <body class="tg">
 
 <div align="center">
-    <h1>РЎРїРёСЃРѕРє РєРЅРёРі</h1>
+    <h1>Список книг</h1>
 
     <c:if test="${!empty listBooks}">
         <table class="tg">
             <tr>
                 <th width="80">ID</th>
-                <th width="120">РќР°Р·РІР°РЅРёРµ</th>
-                <th width="120">РђРІС‚РѕСЂ</th>
-                <th width="120">Р¦РµРЅР°</th>
-                <th width="60">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</th>
-                <th width="60">РЈРґР°Р»РёС‚СЊ</th>
+                <th width="120">Название</th>
+                <th width="120">Автор</th>
+                <th width="120">Цена</th>
+                <th width="60">Редактировать</th>
+                <th width="60">Удалить</th>
+                <th width="150">Пункты продаж</th>
             </tr>
             <c:forEach items="${listBooks}" var="book">
                 <tr>
@@ -67,15 +68,16 @@
                     <td><a href="/bookdata/${book.id}" target="_blank">${book.bookTitle}</a></td>
                     <td>${book.bookAuthor}</td>
                     <td>${book.price}</td>
-                    <td><a href="<c:url value='/edit/${book.id}'/>">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a></td>
-                    <td><a href="<c:url value='/remove/${book.id}'/>">РЈРґР°Р»РёС‚СЊ</a></td>
+                    <td><a href="<c:url value='/edit/${book.id}'/>">Редактировать</a></td>
+                    <td><a href="<c:url value='/remove/${book.id}'/>">Удалить</a></td>
+                    <td><a href="/salePoint/${book.id}" target="_blank">Посмотреть</a></td>
                 </tr>
             </c:forEach>
         </table>
     </c:if>
 
 
-    <h1>Р”РѕР±Р°РІРёС‚СЊ РєРЅРёРіСѓ</h1>
+    <h1>Добавить книгу</h1>
 
     <c:url var="addAction" value="/books/add"/>
 
@@ -141,7 +143,7 @@
        </form:form>
 
     </br>
-    <a href="../../index.jsp">Р’РµСЂРЅСѓС‚СЊСЃСЏ РІ РјРµРЅСЋ</a>
+    <a href="/">Вернуться в меню</a>
 </div>
 </body>
 </html>

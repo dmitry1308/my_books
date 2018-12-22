@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>Детали книги</title>
+    <title>Пункты продаж</title>
 
     <style type="text/css">
         .tg {
@@ -50,21 +50,30 @@
 <body class="tg">
 <div align="center">
     <table class="tg">
-        <h1>Детали книги</h1>
+        <h1>Наличие книги</h1>
         <tr>
-            <th width="80">ID</th>
-            <th width="120">Название</th>
-            <th width="120">Автор</th>
-            <th width="120">Цена</th>
+            <th width="250"> "${listSalePoint.bookTitle}"</th>
         </tr>
         <tr>
-            <td>${book.id}</td>
-            <td>${book.bookTitle}</td>
-            <td>${book.bookAuthor}</td>
-            <td>${book.price}</td>
+            <th width="250"> Цена: "${listSalePoint.price}" рублей</th>
         </tr>
+
+        <c:if test="${!empty listSalePoint.points}">
+            <c:forEach items="${listSalePoint.points}" var="pointSale">
+                <tr>
+                    <td>${pointSale.place}</td>
+                </tr>
+            </c:forEach>
+        </c:if>
+        <c:if test="${empty listSalePoint.points}">
+            <tr>
+                <td>Нет в продаже :(</td>
+            </tr>
+        </c:if>
     </table>
-    <br/>
+    <c:if test="${empty listSalePoint.points}">
+        <img src="/image/1.jpg" width="250" height="250" style="vertical-align: center"/>
+    </c:if>
     <br/>
     <a href="/books">Вернуться в список книг</a>
 </div>
